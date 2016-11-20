@@ -523,6 +523,9 @@ for rec_spkr to n_rec_spkr
 			Extract part: start_sound, end_sound, "rectangular", 1, "no"
 			new_name$ = receiver_name$ + new_name_ending$
 			Rename: new_name$
+
+			# add intensity manipulation here
+
 			nowarn Save as WAV file: output_path$ + "/" + new_name$ + ".wav"
 
 			# Clean up Object list
