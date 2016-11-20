@@ -250,6 +250,7 @@ elsif speaker_mode$ == "Auto"
 endif
 
 # Prosody Selection
+intonation = 0
 
 if prosody_mode$ == "Manual"
 	beginPause: "Prosody selection: Manual mode"
@@ -267,6 +268,26 @@ if prosody_mode$ == "Manual"
 	num_loops = 1
 elif prosody_mode$ == "Auto"
 	num_loops = 7
+endif
+
+# Intonation parameters
+rec_frame_length = 0.01
+rec_minimum_pitch = 75
+rec_maximum_pitch = 600
+don_frame_length = 0.01
+don_minimum_pitch = 75
+don_maximum_pitch = 600
+if speaker_mode$ == "Manual" and (intonation == 1 or prosody_mode$ == "Auto")
+	beginPause: "Intonation parameters"
+		comment: "Pitch analysis of receiver"
+		positive: "Rec frame length", 0.01
+		positive: "Rec minimum pitch", 75
+		positive: "Rec maximum pitch", 600
+		comment: "Pitch analysis of donor"
+		positive: "Don frame length", 0.01
+		positive: "Don minimum pitch", 75
+		positive: "Don maximum pitch", 600
+	endPause: "Continue", 1
 endif
 
 # Transplant Prosody
@@ -331,12 +352,12 @@ for rec_spkr to n_rec_spkr
 
 			# Extract prosodic tiers
 			selectObject: "Sound " + receiver_name$
-			To Manipulation: 0.01, 100, 500
+			To Manipulation: rec_frame_length, rec_minimum_pitch, rec_maximum_pitch
 			Extract duration tier
 			selectObject: "Manipulation " + receiver_name$
 			Extract pitch tier
 			selectObject: "Sound " + donor_name$
-			To Manipulation: 0.01, 100, 500
+			To Manipulation: don_frame_length, don_minimum_pitch, don_maximum_pitch
 			Extract pitch tier
 
 			# Get info for speech rate manipulation and duration
@@ -479,6 +500,10 @@ for rec_spkr to n_rec_spkr
 				selectObject: "TextGrid " + receiver_name$
 				Extract part: receiver_onset, receiver_offset, "no"
 				Scale times by: global_coeff
+				Rename: new_name$
+			elsif duration == 2 and speech_rate == 2
+				selectObject: "TextGrid " + receiver_name$
+				Extract part: receiver_onset, receiver_offset, "no"
 				Rename: new_name$
 			endif
 			selectObject: "TextGrid " + new_name$
