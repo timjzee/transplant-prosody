@@ -329,66 +329,7 @@ for rec_spkr to n_rec_spkr
 				appendInfoLine: "Unequal syllable count in " + receiver_name$ + " and " + donor_name$
 			endif
 
-			# Normalise Sound Pressure Level (dB) and reduce echo
-			selectObject: "Sound " + receiver_name$
-			To Intensity: 75, 0, "yes"
-			Down to IntensityTier
-			cumul_spl = 0
-			num_points = 0
-			for k from 2 to (num_receiver_syl - 1)
-				selectObject: "TextGrid " + receiver_name$
-				syl_label$ = Get label of interval: 4, k
-				rec_syl_start = Get starting point: 4, k
-				rec_syl_end = Get end point: 4, k
-				if length (syl_label$) > 0
-					selectObject: "IntensityTier " + receiver_name$
-					first_index = Get high index from time: rec_syl_start
-					last_index = Get low index from time: rec_syl_end
-					if last_index >= first_index
-						for l from first_index to last_index
-							current_spl = Get value at index: l
-							cumul_spl = cumul_spl + current_spl
-							num_points = num_points + 1
-						endfor
-					endif
-				endif
-			endfor
-			mean_spl = cumul_spl / num_points
-			spl_norm = 70 - mean_spl
-			selectObject: "Sound " + receiver_name$
-			total_dur = Get end time
-			Create IntensityTier: receiver_name$ + "_norm", 0, total_dur
-			for m from 2 to (num_receiver_syl - 1)
-				selectObject: "TextGrid " + receiver_name$
-				syl_label$ = Get label of interval: 4, m
-				rec_syl_start = Get starting point: 4, m
-				rec_syl_end = Get end point: 4, m
-				selectObject: "IntensityTier " + receiver_name$
-				first_index = Get high index from time: rec_syl_start
-				last_index = Get low index from time: rec_syl_end
-				if last_index >= first_index
-					for n from first_index to last_index
-						selectObject: "IntensityTier " + receiver_name$
-						if length (syl_label$) > 0
-							spl_shift = spl_norm
-						elsif length (syl_label$) == 0
-							old_spl = Get value at index: n
-							spl_shift = 50 - old_spl
-						endif
-						spl_point_time = Get time from index: n
-						selectObject: "IntensityTier " + receiver_name$ + "_norm"
-						Add point: spl_point_time, spl_shift
-					endfor
-				endif
-			endfor
-			selectObject: "Sound " + receiver_name$
-			plusObject: "IntensityTier " + receiver_name$ + "_norm"
-			Multiply: "no"
-			selectObject: "Sound " + receiver_name$
-			Remove
-			selectObject: "Sound " + receiver_name$ + "_int"
-			Rename: receiver_name$
-
+			# Extract prosodic tiers
 			selectObject: "Sound " + receiver_name$
 			To Manipulation: 0.01, 100, 500
 			Extract duration tier
@@ -524,7 +465,82 @@ for rec_spkr to n_rec_spkr
 			new_name$ = receiver_name$ + new_name_ending$
 			Rename: new_name$
 
-			# add intensity manipulation here
+			# Normalise Sound Pressure Level (dB) and reduce echo
+			if duration == 1 and speech_rate == 1
+				selectObject: "TextGrid " + donor_name$
+				Extract part: donor_onset, donor_offset, "no"
+				Rename: new_name$
+			elsif duration == 1 and speech_rate == 2
+				selectObject: "TextGrid " + donor_name$
+				Extract part: donor_onset, donor_offset, "no"
+				Scale times by: 1 / global_coeff
+				Rename: new_name$
+			elsif duration == 2 and speech_rate == 1
+				selectObject: "TextGrid " + receiver_name$
+				Extract part: receiver_onset, receiver_offset, "no"
+				Scale times by: global_coeff
+				Rename: new_name$
+			endif
+			selectObject: "TextGrid " + new_name$
+			num_total_syl = Get number of intervals: 4
+			selectObject: "Sound " + new_name$
+			To Intensity: 75, 0, "yes"
+			Down to IntensityTier
+			cumul_spl = 0
+			num_points = 0
+			for k from 1 to num_total_syl
+				selectObject: "TextGrid " + new_name$
+				syl_label$ = Get label of interval: 4, k
+				rec_syl_start = Get starting point: 4, k
+				rec_syl_end = Get end point: 4, k
+				if length (syl_label$) > 0
+					selectObject: "IntensityTier " + new_name$
+					first_index = Get high index from time: rec_syl_start
+					last_index = Get low index from time: rec_syl_end
+					if last_index >= first_index
+						for l from first_index to last_index
+							current_spl = Get value at index: l
+							cumul_spl = cumul_spl + current_spl
+							num_points = num_points + 1
+						endfor
+					endif
+				endif
+			endfor
+			mean_spl = cumul_spl / num_points
+			spl_norm = 70 - mean_spl
+			selectObject: "Sound " + new_name$
+			total_dur = Get end time
+			Create IntensityTier: new_name$ + "_norm", 0, total_dur
+			for m from 1 to num_total_syl
+				selectObject: "TextGrid " + new_name$
+				syl_label$ = Get label of interval: 4, m
+				rec_syl_start = Get starting point: 4, m
+				rec_syl_end = Get end point: 4, m
+				selectObject: "IntensityTier " + new_name$
+				first_index = Get high index from time: rec_syl_start
+				last_index = Get low index from time: rec_syl_end
+				if last_index >= first_index
+					for n from first_index to last_index
+						selectObject: "IntensityTier " + new_name$
+						if length (syl_label$) > 0
+							spl_shift = spl_norm
+						elsif length (syl_label$) == 0
+							old_spl = Get value at index: n
+							spl_shift = 50 - old_spl
+						endif
+						spl_point_time = Get time from index: n
+						selectObject: "IntensityTier " + new_name$ + "_norm"
+						Add point: spl_point_time, spl_shift
+					endfor
+				endif
+			endfor
+			selectObject: "Sound " + new_name$
+			plusObject: "IntensityTier " + new_name$ + "_norm"
+			Multiply: "no"
+			selectObject: "Sound " + new_name$
+			Remove
+			selectObject: "Sound " + new_name$ + "_int"
+			Rename: new_name$
 
 			nowarn Save as WAV file: output_path$ + "/" + new_name$ + ".wav"
 
@@ -544,13 +560,14 @@ for rec_spkr to n_rec_spkr
 			Rename: new_name$
 			selectObject: "Sound " + receiver_name$
 			Remove
-			selectObject: "IntensityTier " + receiver_name$ + "_norm"
+			selectObject: "IntensityTier " + new_name$ + "_norm"
 			Remove
-			selectObject: "IntensityTier " + receiver_name$
+			selectObject: "IntensityTier " + new_name$
 			Remove
-			selectObject: "Intensity " + receiver_name$
+			selectObject: "Intensity " + new_name$
 			Remove
 			selectObject: "Sound " + donor_name$
+			Remove
 		endfor
 	endfor
 endfor
