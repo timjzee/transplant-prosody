@@ -526,7 +526,7 @@ for rec_spkr to n_rec_spkr
 							spl_shift = spl_norm
 						elsif length (syl_label$) == 0
 							old_spl = Get value at index: n
-							spl_shift = 50 - old_spl
+							spl_shift = 25 - old_spl
 						endif
 						spl_point_time = Get time from index: n
 						selectObject: "IntensityTier " + new_name$ + "_norm"
