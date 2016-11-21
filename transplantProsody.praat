@@ -541,15 +541,16 @@ for rec_spkr to n_rec_spkr
 				syl_label$ = Get label of interval: 4, m
 				rec_syl_start = Get starting point: 4, m
 				rec_syl_end = Get end point: 4, m
+				rec_syl_dur = rec_syl_end - rec_syl_start
 				selectObject: "IntensityTier " + new_name$
 				first_index = Get high index from time: rec_syl_start
 				last_index = Get low index from time: rec_syl_end
 				if last_index >= first_index
 					for n from first_index to last_index
 						selectObject: "IntensityTier " + new_name$
-						if length (syl_label$) > 0
+						if length (syl_label$) > 0 or rec_syl_dur < 0.015
 							spl_shift = spl_norm
-						elsif length (syl_label$) == 0
+						elsif length (syl_label$) == 0 and rec_syl_dur > 0.015
 							old_spl = Get value at index: n
 							spl_shift = 40 - old_spl
 						endif
