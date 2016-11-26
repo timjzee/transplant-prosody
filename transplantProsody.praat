@@ -2,7 +2,7 @@ form Provide sentence label, path to TextGrids, and path to output folder
 	comment Sentence label
 	text sentence_label CV1
 	comment Path to files
-	text textgrids_path /Users/tim/Dropbox/Perception_Study/Alle_NL_bestanden/testje
+	text textgrids_path /Users/tim/Dropbox/Perception_Study/Alle_NL_bestanden/zinnen_NL
 	comment Path to output folder
 	text output_path /Users/tim/Documents/sound_files/auto_output
 endform
@@ -65,7 +65,7 @@ for l from 2 to num_cols
 	min_syl = Get minimum: col_lab$
 	max_syl = Get maximum: col_lab$
 	if min_syl <> max_syl
-		selectObject: "Table " + sentence_label$ + "_L1"
+		selectObject: "Table " + sentence_label$
 		# Taking the median is a really ugly solution because it assumes only 2 different values. Also, it doesn't actually compare different combinations of values.
 		median_syl = Get quantile: col_lab$, 0.5
 		selectObject: "Table " + sentence_label$ + "_var_words"
