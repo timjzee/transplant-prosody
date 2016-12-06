@@ -2,7 +2,7 @@ form Provide sentence label, path to TextGrids, and path to output folder
 	comment Sentence label
 	text sentence_label CV1
 	comment Path to files
-	text textgrids_path /Users/tim/Dropbox/Perception_Study/Alle_NL_bestanden/zinnen_NL
+	text textgrids_path /Users/tim/Dropbox/Perception_Study/Pilot/original
 	comment Path to output folder
 	text output_path /Users/tim/Documents/sound_files/auto_output
 endform
@@ -532,7 +532,7 @@ for rec_spkr to n_rec_spkr
 				endif
 			endfor
 			mean_spl = cumul_spl / num_points
-			spl_norm = 70 - mean_spl
+			spl_norm = 65 - mean_spl
 			selectObject: "Sound " + new_name$
 			total_dur = Get end time
 			Create IntensityTier: new_name$ + "_norm", 0, total_dur
@@ -568,7 +568,7 @@ for rec_spkr to n_rec_spkr
 			selectObject: "Sound " + new_name$ + "_int"
 			Rename: new_name$
 
-			nowarn Save as WAV file: output_path$ + "/" + new_name$ + ".wav"
+			Save as WAV file: output_path$ + "/" + new_name$ + ".wav"
 
 			# Clean up Object list
 
