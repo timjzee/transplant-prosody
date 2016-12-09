@@ -532,7 +532,7 @@ for rec_spkr to n_rec_spkr
 				endif
 			endfor
 			mean_spl = cumul_spl / num_points
-			spl_norm = 65 - mean_spl
+			spl_norm = 64 - mean_spl
 			selectObject: "Sound " + new_name$
 			total_dur = Get end time
 			Create IntensityTier: new_name$ + "_norm", 0, total_dur
