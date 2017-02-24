@@ -1,0 +1,66 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 2.2049333947815044 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "syll" 
+        xmin = 0 
+        xmax = 2.2049333947815044 
+        intervals: size = 13 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.19159981345311866 
+            text = "cv" 
+        intervals [2]:
+            xmin = 0.19159981345311866 
+            xmax = 0.28981039111069673 
+            text = "cv" 
+        intervals [3]:
+            xmin = 0.28981039111069673 
+            xmax = 0.552431311636147 
+            text = "cv" 
+        intervals [4]:
+            xmin = 0.552431311636147 
+            xmax = 0.7620582370076451 
+            text = "ccv" 
+        intervals [5]:
+            xmin = 0.7620582370076451 
+            xmax = 0.7740039559702908 
+            text = "" 
+        intervals [6]:
+            xmin = 0.7740039559702908 
+            xmax = 0.9495045334554144 
+            text = "cvvc" 
+        intervals [7]:
+            xmin = 0.9495045334554144 
+            xmax = 1.1833186866991625 
+            text = "cvc" 
+        intervals [8]:
+            xmin = 1.1833186866991625 
+            xmax = 1.349595743669638 
+            text = "cvc" 
+        intervals [9]:
+            xmin = 1.349595743669638 
+            xmax = 1.3615414626322837 
+            text = "" 
+        intervals [10]:
+            xmin = 1.3615414626322837 
+            xmax = 1.5896159867066235 
+            text = "ccvc" 
+        intervals [11]:
+            xmin = 1.5896159867066235 
+            xmax = 1.765676411023939 
+            text = "cvc" 
+        intervals [12]:
+            xmin = 1.765676411023939 
+            xmax = 2.0360591102322427 
+            text = "cvc" 
+        intervals [13]:
+            xmin = 2.0360591102322427 
+            xmax = 2.2049333947815044 
+            text = "cv" 

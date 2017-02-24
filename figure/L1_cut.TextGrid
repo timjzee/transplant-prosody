@@ -1,0 +1,66 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 1.8457937958161583 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "syll" 
+        xmin = 0 
+        xmax = 1.8457937958161583 
+        intervals: size = 13 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.16039203169959912 
+            text = "de" 
+        intervals [2]:
+            xmin = 0.16039203169959912 
+            xmax = 0.2426060683471061 
+            text = "le" 
+        intervals [3]:
+            xmin = 0.2426060683471061 
+            xmax = 0.46245128766514354 
+            text = "ga" 
+        intervals [4]:
+            xmin = 0.46245128766514354 
+            xmax = 0.6379341749044971 
+            text = "ties" 
+        intervals [5]:
+            xmin = 0.6379341749044971 
+            xmax = 0.6479341749044971 
+            text = "" 
+        intervals [6]:
+            xmin = 0.6479341749044971 
+            xmax = 0.7948492145382882 
+            text = "uit" 
+        intervals [7]:
+            xmin = 0.7948492145382882 
+            xmax = 0.990579713451651 
+            text = "meer" 
+        intervals [8]:
+            xmin = 0.990579713451651 
+            xmax = 1.1297735597914342 
+            text = "dan" 
+        intervals [9]:
+            xmin = 1.1297735597914342 
+            xmax = 1.1397735597914342 
+            text = "" 
+        intervals [10]:
+            xmin = 1.1397735597914342 
+            xmax = 1.3306993004584697 
+            text = "twin" 
+        intervals [11]:
+            xmin = 1.3306993004584697 
+            xmax = 1.4780829990603332 
+            text = "tig" 
+        intervals [12]:
+            xmin = 1.4780829990603332 
+            xmax = 1.704425758381718 
+            text = "lan" 
+        intervals [13]:
+            xmin = 1.704425758381718 
+            xmax = 1.8457937958161583 
+            text = "den" 
