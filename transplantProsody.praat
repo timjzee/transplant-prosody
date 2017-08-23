@@ -212,11 +212,13 @@ endfor
 
 # Mode Selection
 
+speaker_mode$ = "Manual"
+
 beginPause: "Mode Selection"
 	comment: "Select transplantation parameters manually or automatically?"
-	optionMenu: "Speaker mode", 1
-		option: "Manual"
-		option: "Auto"
+#	optionMenu: "Speaker mode", 1
+#		option: "Manual"
+#		option: "Auto"
 	optionMenu: "Prosody mode", 2
 		option: "Manual"
 		option: "Auto"
@@ -228,7 +230,7 @@ endPause: "Continue", 1
 if speaker_mode$ == "Manual"
 	selectObject: "Table " + sentence_label$ + "_pauses"
 	View & Edit
-	beginPause: "Speaker selection: Manual mode"
+	beginPause: "Speaker selection"
 		comment: "Provide receiver and donor IDs (see 'Speaker' column in table)."
 		comment: "Receiver ID:"
 		text: "Receiver id", "L1_3"
@@ -277,7 +279,7 @@ rec_maximum_pitch = 600
 don_frame_length = 0.01
 don_minimum_pitch = 75
 don_maximum_pitch = 600
-if speaker_mode$ == "Manual" and (intonation == 1 or prosody_mode$ == "Auto")
+if speaker_mode$ == "Manual"
 	beginPause: "Intonation parameters"
 		comment: "Pitch analysis of receiver"
 		positive: "Rec frame length", 0.01
@@ -376,10 +378,10 @@ for rec_spkr to n_rec_spkr
 
 			# Get mean intonation of receiver and donor
 			selectObject: "PitchTier " + receiver_name$
-			mean_rec_hz = Get mean (curve): receiver_onset, receiver_offset
+			mean_rec_hz = Get mean (points): receiver_onset, receiver_offset
 			mean_rec_erb = 16.7 * log10(1 + mean_rec_hz / 165.4)
 			selectObject: "PitchTier " + donor_name$
-			mean_don_hz = Get mean (curve): donor_onset, donor_offset
+			mean_don_hz = Get mean (points): donor_onset, donor_offset
 			mean_don_erb = 16.7 * log10(1 + mean_don_hz / 165.4)
 
 			# Transplantation

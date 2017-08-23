@@ -20,5 +20,23 @@ Audio files should be annotated as follows:
 - Both TextGrids have empty intervals either side of the actual utterance.
 
 ## Usage
-- Before transplantation, use Praat's pitch analysis to find the best settings (time step, min Hz, max Hz). You will need these settings for each audio file if you plan on transplanting intonation.
--
+- Before transplantation, use Praat's pitch analysis to find the best settings (time step, min Hz, max Hz). You will need these settings for each audio file.
+- Download the transplantProsody.praat file in this repository.
+- Praat > Open Praat script > transplantProsody.praat > Open
+- Run > Run
+- Give sentence label (e.g. CV1).
+- Fill out the complete path to folder containing donor and receiver files.
+- Provide path to output folder.
+- OK
+- Specify whether you would like manual control over prosody combinations.
+- Continue
+- Provide receiver and donor labels (these can be found in the table accompanying this pop-up screen)
+- Continue
+- If you opted for manual prosody selection:
+  - Select the manipulations you would like to carry out.
+  - Continue
+- Choose the optimal settings for pitch analysis of both speakers.
+- Continue
+- The script will now take a few minutes to carry out all transplantations.
+- The resynthesised sound files should be saved to the output folder you specified at the start.
+- By viewing the manipulation objects, you can get a visual representation of what has been changed.
