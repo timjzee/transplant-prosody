@@ -40,3 +40,7 @@ Audio files should be annotated as follows:
 - The script will now take a few minutes to carry out all transplantations.
 - The resynthesised sound files should be saved to the output folder you specified at the start.
 - By viewing the manipulation objects, you can get a visual representation of what has been changed.
+
+## Schematic overview
+
+![alt text](https://github.com/timjzee/transplant-prosody/blob/master/figure_final.png?raw=true "Overview")
