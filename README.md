@@ -7,10 +7,10 @@ Audio files should be annotated as follows:
 
 .wav and .TextGrid files should be named as follows:
 
-| Sentence ID   |   | Nativeness    |   | Proficiency  |   | Speaker No. | Extension  |
-|:-------------:|:-:|:-------------:|:-:|:------------:|:-:|:-----------:|:----------:|
-| CV4           | - | L2            | _ | B1           | _ | 4           | .wav       |
-| CVC1          | - | L1            |   |              | _ | 2           | .TextGrid  |
+| Sentence ID   |     | Nativeness    |     | Proficiency  |     | Speaker No. | Extension   |
+|:-------------:|:---:|:-------------:|:---:|:------------:|:---:|:-----------:|:-----------:|
+| `CV4`         | `-` | `L2`          | `_` | `B1`         | `_` | `4`         | `.wav`      |
+| `CVC1`        | `-` | `L1`          |     |              | `_` | `2`         | `.TextGrid` |
 
 ## Limitations
 - .wav files and corresponding .TextGrid files are located in the same folder.
@@ -19,4 +19,3 @@ Audio files should be annotated as follows:
 - Both TextGrids have empty intervals either side of the actual utterance.
 
 # Usage
- 
