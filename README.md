@@ -13,6 +13,8 @@ Audio files should be annotated as follows:
 | `CV4`         | `-` | `L2`          | `_` | `B1`         | `_` | `4`         | `.wav`      |
 | `CVC1`        | `-` | `L1`          |     |              | `_` | `2`         | `.TextGrid` |
 
+Note that Sentence ID and Nativeness should be separated by a hyphen `-`, whereas the other fields are separated by underscores `_`.
+
 ## Requirements
 - .wav files and corresponding .TextGrid files should be located in the same folder.
 - When providing file paths use forward slashes "/" (the POSIX standard).
@@ -24,7 +26,7 @@ Audio files should be annotated as follows:
 - Download the transplantProsody.praat file in this repository.
 - Praat > Open Praat script > transplantProsody.praat > Open
 - Run > Run
-- Give sentence label (e.g. CV1).
+- Give sentence ID (e.g. CV1; see Formatting section above).
 - Fill out the complete path to folder containing donor and receiver files.
 - Provide path to output folder.
 - OK
